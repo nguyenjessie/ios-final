@@ -18,21 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wB7-dy-4Jr">
-                                <rect key="frame" x="170" y="500" width="34" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="9wi-zf-TUh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="LHg-L4-q9E">
+                                <rect key="frame" x="139" y="260" width="97" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="5mU-T5-nRm">
+                                <rect key="frame" x="59" y="202" width="256" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wB7-dy-4Jr">
+                                <rect key="frame" x="131" y="465" width="113" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="camera"/>
                                 <connections>
                                     <segue destination="0HS-dg-x4f" kind="show" id="jg8-bE-pFq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HEXDROPPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjP-AN-Pb7">
-                                <rect key="frame" x="132" y="214" width="110" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -59,38 +64,52 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="D8N-uq-B9V" appends="YES" id="ssF-C3-H7g"/>
+                                    <outletCollection property="gestureRecognizers" destination="lFR-8a-SLH" appends="YES" id="nM9-p9-JhJ"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgU-yp-zMs">
-                                <rect key="frame" x="15" y="20" width="48" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66J-Uh-KDH">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="cancelButtonWasPressed:" destination="0HS-dg-x4f" eventType="touchUpInside" id="VhA-vJ-zIh"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66J-Uh-KDH">
-                                <rect key="frame" x="0.0" y="626" width="375" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykc-ti-UWt">
-                                <rect key="frame" x="145" y="588" width="85" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykc-ti-UWt">
+                                <rect key="frame" x="160" y="555" width="54" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take Picture"/>
+                                <state key="normal" image="shutter"/>
                                 <connections>
                                     <action selector="takePhotoButtonWasPressed:" destination="0HS-dg-x4f" eventType="touchUpInside" id="g2V-1w-Z1i"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap to get RGBA code of center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6S-gh-Tpt">
-                                <rect key="frame" x="65" y="51" width="242" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap to get RGBA Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6S-gh-Tpt">
+                                <rect key="frame" x="101" y="30" width="172" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgU-yp-zMs">
+                                <rect key="frame" x="24" y="28" width="19" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <action selector="cancelButtonWasPressed:" destination="0HS-dg-x4f" eventType="touchUpInside" id="VhA-vJ-zIh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfa-WL-iv6">
+                                <rect key="frame" x="325" y="571" width="28" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="reverseCamera"/>
+                                <connections>
+                                    <action selector="flipCameraButtonWasPressed:" destination="0HS-dg-x4f" eventType="touchUpInside" id="Rrh-eE-TXK"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shutter" translatesAutoresizingMaskIntoConstraints="NO" id="RuY-nT-UmP">
+                                <rect key="frame" x="176" y="356" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -103,6 +122,9 @@
                         <outlet property="cancelButton" destination="SgU-yp-zMs" id="CAw-ux-C8f"/>
                         <outlet property="color" destination="66J-Uh-KDH" id="N8c-sJ-OAr"/>
                         <outlet property="imageViewOverlay" destination="xkp-b4-8bb" id="Y7x-dq-2FA"/>
+                        <outlet property="panGesture" destination="lFR-8a-SLH" id="Lzn-QH-d8j"/>
+                        <outlet property="picker" destination="RuY-nT-UmP" id="WEN-25-Xo3"/>
+                        <outlet property="reverseCamera" destination="sfa-WL-iv6" id="KDt-l2-QHz"/>
                         <outlet property="takePhotoButton" destination="Ykc-ti-UWt" id="R54-B4-2oo"/>
                         <outlet property="tapGesture" destination="D8N-uq-B9V" id="nEN-u2-ijz"/>
                         <outlet property="tapInstruct" destination="p6S-gh-Tpt" id="HLL-Q8-eZF"/>
@@ -114,10 +136,24 @@
                         <action selector="pixelTap:" destination="0HS-dg-x4f" id="g32-mt-qek"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="lFR-8a-SLH">
+                    <connections>
+                        <action selector="pixelTap:" destination="0HS-dg-x4f" id="6Yb-hK-dLV"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1084" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backButton" width="19" height="23"/>
+        <image name="background" width="375" height="667"/>
+        <image name="camera" width="73" height="100"/>
+        <image name="logo" width="388" height="388"/>
+        <image name="reverseCamera" width="28" height="22"/>
+        <image name="shutter" width="54" height="54"/>
+        <image name="title" width="1000" height="104"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jg8-bE-pFq"/>
     </inferredMetricsTieBreakers>

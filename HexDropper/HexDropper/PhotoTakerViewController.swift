@@ -16,7 +16,10 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var color: UILabel!
     @IBOutlet weak var tapInstruct: UILabel!
+    @IBOutlet weak var reverseCamera: UIButton!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
+    @IBOutlet var panGesture: UIPanGestureRecognizer!
+    @IBOutlet weak var picker: UIImageView!
     
     public struct RGBAPixel {
         public var raw: UInt32
@@ -36,6 +39,8 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 
     var captureSession: AVCaptureSession?
     
+    var captureInput: AVCaptureInput?
+    
     // the device we are capturing media from
     var captureDevice : AVCaptureDevice?
     
@@ -47,6 +52,9 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
     
     //data
     var data: Data?
+    
+    //front or back
+    var position: String = "back"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +63,7 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
         captureSession = AVCaptureSession()
         
         createAndLayoutPreviewLayer(fromSession: captureSession)
-        configureCaptureSession(forDevicePosition: .unspecified)
+        configureCaptureSession(forDevicePosition: .back)
         
         captureSession?.startRunning()
         
@@ -80,7 +88,7 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
         
         captureSession.sessionPreset = AVCaptureSession.Preset.high
         
-        guard let capDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) else {
+        guard let capDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: devicePostion) else {
             print("No available capture devices.")
             return
         }
@@ -108,6 +116,7 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
         catch {
             print(error.localizedDescription)
         }
+        captureInput = input
     }
 
     func createAndLayoutPreviewLayer(fromSession session: AVCaptureSession?) {
@@ -144,13 +153,29 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
         
     }
     
-    /// Switch between front and back camera
-//    @IBAction func flipCameraButtonWasPressed(_ sender: UIButton) {
-        // TODO: allow user to switch between front and back camera.
-        // you will need to remove all of your inputs from
-        // your capture session before switching cameras
+    // Switch between front and back camera
+    @IBAction func flipCameraButtonWasPressed(_ sender: UIButton) {
+         //TODO: allow user to switch between front and back camera.
+         //you will need to remove all of your inputs from
+         //your capture session before switching cameras
         
-    //}
+        if position == "back" {
+            captureSession?.removeInput(captureInput!)
+            captureSession?.removeOutput(photoOutput!)
+            
+            configureCaptureSession(forDevicePosition: .front)
+            
+            position = "front"
+        } else {
+            captureSession?.removeInput(captureInput!)
+            captureSession?.removeOutput(photoOutput!)
+            
+            configureCaptureSession(forDevicePosition: .back)
+            
+            position = "back"
+        }
+        
+    }
     
     @IBAction func cancelButtonWasPressed(_ sender: UIButton) {
         selectedImage = UIImage()
@@ -166,7 +191,10 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
             //flipCameraButton.isHidden = true
             tapInstruct.isHidden = false
             tapGesture.isEnabled = true
+            panGesture.isEnabled = true
             color.isHidden = false
+            reverseCamera.isHidden = true
+            reverseCamera.isEnabled = false
         }
         else {
             takePhotoButton.isHidden = false
@@ -176,8 +204,12 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
             //flipCameraButton.isHidden = false
             tapInstruct.isHidden = true
             tapGesture.isEnabled = false
+            panGesture.isEnabled = false
             color.isHidden = true
             color.text = ""
+            reverseCamera.isHidden = false
+            reverseCamera.isEnabled = true
+            picker.isHidden = true
         }
     }
     
@@ -200,15 +232,20 @@ class PhotoTakerViewController: UIViewController, AVCapturePhotoCaptureDelegate 
             let a = CGFloat(data[pixelInfo+3])
         
             print(UIColor(red: r, green: g, blue: b, alpha: a))
-            color.text = String(describing: UIColor(red: r, green: g, blue: b, alpha: a))
-            color.textColor = UIColor(red: r, green: g, blue: b, alpha: a)
-        
+            let stringR = String(Int(Float(r)))
+            let stringG = String(Int(Float(g)))
+            let stringB = String(Int(Float(b)))
+            color.text = String(stringR + " " + stringG + " " + stringB)
+            color.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
     }
     
     @IBAction func pixelTap(_ sender: Any) {
         print("image tapped")
         //point = getLocation(view: imageViewOverlay, touch: imageViewOverlay.center)
-        point = imageViewOverlay.center
+        
+        point = panGesture.location(in: imageViewOverlay)
+        picker.center = point!
+        picker.isHidden = false
         getColor(view: imageViewOverlay, point: point!)
     }
     
